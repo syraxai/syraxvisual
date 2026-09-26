@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SYRAX Visual | Em produção</title>
+  <meta name="description" content="SYRAX Visual — produção audiovisual com Inteligência Artificial. Novo site em produção." />
+  <meta name="theme-color" content="#05080b" />
+  <style>
+    :root{--bg:#05080b;--panel:#091119;--text:#f5f7fa;--muted:#94a3b8;--cyan:#18d9ff;--line:#12303b}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    body{min-height:100vh;display:grid;place-items:center;overflow:hidden}
+    body:before{content:"";position:fixed;inset:-20%;background:radial-gradient(circle at 75% 28%,rgba(24,217,255,.13),transparent 28%),radial-gradient(circle at 25% 78%,rgba(24,217,255,.07),transparent 25%);filter:blur(24px);pointer-events:none}
+    .wrap{width:min(1080px,92vw);position:relative;padding:48px 0}
+    .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:13vh}
+    .brand{letter-spacing:.42em;font-weight:700;font-size:15px}.brand span{color:var(--cyan)}
+    .status{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:10px 14px;border-radius:999px}
+    h1{font-size:clamp(48px,8vw,110px);line-height:.92;margin:0;max-width:930px;letter-spacing:-.055em}
+    h1 em{font-style:normal;color:var(--cyan)}
+    p{max-width:670px;color:#c6d0dc;font-size:clamp(17px,2vw,22px);line-height:1.55;margin:28px 0 34px}
+    .actions{display:flex;gap:14px;flex-wrap:wrap}
+    a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:15px 22px;font-weight:700;transition:.2s ease}
+    .primary{background:var(--cyan);color:#031016}.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(24,217,255,.18)}
+    .secondary{border:1px solid #27414c;color:#edf7fb;background:rgba(255,255,255,.02)}
+    .secondary:hover{border-color:var(--cyan)}
+    .foot{margin-top:13vh;padding-top:22px;border-top:1px solid #111d24;color:#6f8492;font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:650px){.top{margin-bottom:16vh}.status{display:none}.wrap{padding:30px 0}.foot{margin-top:16vh}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">SYRAX <span>VISUAL</span></div>
+      <div class="status">Novo site em produção</div>
+    </header>
+    <section>
+      <h1>Ideias que ganham <em>imagem.</em></h1>
+      <p>Estamos preparando a nova experiência da SYRAX Visual. Produção audiovisual, campanhas e conteúdo criados com Inteligência Artificial.</p>
+      <div class="actions">
+        <a class="primary" href="https://syrax-ad-factory.higgsfield.app/" target="_blank" rel="noopener noreferrer">Abrir SYRAX Ad Factory →</a>
+        <a class="secondary" href="https://www.instagram.com/syrax.visual/" target="_blank" rel="noopener noreferrer">@syrax.visual</a>
+      </div>
+    </section>
+    <footer class="foot">
+      <span>SYRAX Visual © 2026</span>
+      <span>Site oficial em produção</span>
+    </footer>
+  </main>
+</body>
+</html>
