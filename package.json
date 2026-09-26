@@ -1,0 +1,12 @@
+{
+  "name": "syrax-ads",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@fal-ai/client": "latest",
+    "@netlify/database": "latest",
+    "@netlify/functions": "latest",
+    "@netlify/identity": "latest"
+  }
+}
