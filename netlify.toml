@@ -1,2 +1,11 @@
 [build]
+  command = "echo SYRAX Ads ready"
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/app/*"
+  to = "/index.html"
+  status = 200
