@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://syraxvisual.netlify.app/sitemap.xml

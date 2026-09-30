@@ -2,7 +2,7 @@
 // Mantenha as mídias em assets/. Nenhum vídeo do portfólio é carregado antes do clique.
 export const projects = [
   { id:'studio', title:'Possibilidades em cena', category:'AI Film / Produto', duration:'00:10', format:'16:9', src:'./assets/studio.mp4', poster:'./assets/studio-poster.jpg', alt:'Cena de produto com um frasco de perfume sob iluminação cinematográfica azul', description:'Filme conceitual da SYRAX Visual. Um estudo de cenas, produtos e possibilidades da produção com IA.' },
-  { id:'identity', title:'Uma marca em movimento', category:'Brand Film / Identidade', duration:'00:08', format:'9:16', src:'./assets/film.mp4', poster:'./assets/identity-poster.jpg', alt:'Símbolo da SYRAX Visual iluminado em ciano na vinheta da marca', description:'Vinheta da SYRAX Visual em formato vertical, criada a partir da identidade oficial da marca.' }
+  { id:'chronos', title:'AETERNO Chronos', category:'Product Film / Luxury Watch', duration:'00:05', format:'16:9', src:'./assets/aeterno-chronos.mp4', poster:'./assets/aeterno-chronos-poster.jpg', alt:'Relógio premium AETERNO Chronos em fotografia publicitária escura e cinematográfica', description:'Filme publicitário conceitual para um relógio premium, explorando metal, vidro, reflexos e fotografia cinematográfica de produto.' }
 ];
 export const services = [
   { title:'Comerciais com IA', description:'Produções publicitárias cinematográficas para marcas, empresas e produtos.', icon:'film' },
@@ -20,7 +20,7 @@ export const process = [
 ];
 // Preencha somente com os contatos comerciais oficiais fornecidos pela SYRAX.
 export const contactConfig = {
-  instagramUrl: null,
+  instagramUrl: 'https://www.instagram.com/syrax.visual/',
   whatsappNumber: null, // Ex.: país + DDD + número, apenas dígitos.
   endpoint: null // Opcional: endpoint que aceite POST JSON e retorne 2xx após receber o briefing.
 };

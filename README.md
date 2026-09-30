@@ -52,7 +52,7 @@ Sem configuração, o botão valida os campos e oferece um arquivo TXT local. A 
 
 ## Links oficiais
 
-- Ad Factory: https://syrax-ad-factory.higgsfield.app/
+- SYRAX Ads: https://syrax-ads.netlify.app/
 - Higgsfield (afiliado): https://higgsfield.ai?fpr=carlos-99134b
 
 Ambos abrem em nova aba com `noopener noreferrer`; o link afiliado é identificado e possui também `sponsored`.
@@ -68,3 +68,8 @@ Modal nativo com Escape e restauração de foco; menu mobile com Escape e conten
 Revisão local em Chromium com viewports 1920 × 1080, 1366 × 768, 768 × 1024, 412 × 915, 390 × 844 e 320 × 740. Validados: ausência de rolagem horizontal e erros de console/recursos, hero, menu, âncoras, modais, teclado, comparação, campos inválidos, briefing válido, download e redução de movimento. São emulações de tela; não substituem testes em aparelhos físicos com Safari/iOS ou Android.
 
 Open Graph e favicon configurados. Ao usar domínio próprio, atualize `og:url` no HTML. A publicação inicial no Sites tem acesso privado; o acesso público e um domínio oficial podem ser configurados quando desejado.
+
+
+## Formulário comercial
+
+O formulário de contato usa Netlify Forms com honeypot antispam e envio assíncrono pelo site.

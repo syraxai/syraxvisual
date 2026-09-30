@@ -44,14 +44,15 @@ document.querySelector('#close-dialog').addEventListener('click',()=>dialog.clos
 dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
 dialog.addEventListener('close',()=>{player.pause();player.removeAttribute('src');player.load();document.body.classList.remove('modal-open');if(resumeHero&&!reducedMotion.matches)hero.play().catch(syncMotion);});
 const comparison=document.querySelector('#comparison');
-document.querySelector('#compare-range').addEventListener('input',event=>{const value=Number(event.target.value);comparison.style.setProperty('--split',`${value}%`);event.target.setAttribute('aria-valuetext',`${value}% referência, ${100-value}% resultado`);});
+const compareRange=document.querySelector('#compare-range');
+if(comparison&&compareRange)compareRange.addEventListener('input',event=>{const value=Number(event.target.value);comparison.style.setProperty('--split',`${value}%`);event.target.setAttribute('aria-valuetext',`${value}% referência, ${100-value}% resultado`);});
 
 const revealObserver = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('reveal-pending');revealObserver.unobserve(entry.target);}}),{threshold:.08});
 if(!reducedMotion.matches)document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('reveal-pending');revealObserver.observe(el);});
 const sectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('.desktop-nav a').forEach(a=>{if(a.hash===`#${entry.target.id}`)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});}}),{rootMargin:'-20% 0px -55% 0px'});
 document.querySelectorAll('main>section[id]').forEach(section=>sectionObserver.observe(section));
 
-// No transport is assumed. Offline mode prepares a local download and sends no data.
+// Contact submission: WhatsApp or custom endpoint can override Netlify Forms later.
 const form=document.querySelector('#contact-form');
 const nameInput=document.querySelector('#name');
 const contactInput=document.querySelector('#contact');
@@ -62,18 +63,47 @@ const feedback=document.querySelector('#form-feedback');
 const download=document.querySelector('#download-brief');
 let brief='';
 const whatsapp=contactConfig.whatsappNumber?.replace(/\D/g,'');
-if(contactConfig.instagramUrl){const a=document.createElement('a');a.href=contactConfig.instagramUrl;a.textContent='Instagram ↗';a.target='_blank';a.rel='noopener noreferrer';document.querySelector('#instagram-placeholder').replaceWith(a);}
-if(whatsapp||contactConfig.endpoint){submit.innerHTML=`${whatsapp?'Continuar no WhatsApp':'Enviar briefing'} <span aria-hidden="true">↗</span>`;document.querySelector('#form-note').textContent=whatsapp?'Você poderá revisar e enviar a mensagem no WhatsApp.':'Seus dados serão usados apenas para conversar sobre este projeto.';}
+const netlifyForm=form.hasAttribute('data-netlify');
+if(contactConfig.instagramUrl){const a=document.createElement('a');a.href=contactConfig.instagramUrl;a.textContent='Instagram ↗';a.target='_blank';a.rel='noopener noreferrer';const placeholder=document.querySelector('#instagram-placeholder');if(placeholder)placeholder.replaceWith(a);}
+if(whatsapp||contactConfig.endpoint||netlifyForm){
+ submit.innerHTML=`${whatsapp?'Continuar no WhatsApp':'Enviar briefing'} <span aria-hidden="true">↗</span>`;
+ document.querySelector('#form-note').innerHTML=whatsapp
+  ? 'Você poderá revisar e enviar a mensagem no WhatsApp.'
+  : 'Envie seu briefing diretamente para a SYRAX. Ao enviar, você declara ter lido a <a href="./privacidade.html">Política de Privacidade</a>.';
+}
 function validate(){nameInput.setCustomValidity(nameInput.value.trim().length>=2?'':'Informe seu nome.');ideaInput.setCustomValidity(ideaInput.value.trim().length>=10?'':'Conte um pouco mais sobre a ideia (pelo menos 10 caracteres).');const value=contactInput.value.trim();const digits=value.replace(/\D/g,'');const valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)||(/^[+\d\s().-]+$/.test(value)&&digits.length>=10&&digits.length<=15);contactInput.setCustomValidity(valid?'':'Informe um telefone com DDD (10 a 15 dígitos) ou um e-mail válido.');}
 form.addEventListener('input',()=>{validate();result.hidden=true;brief='';});
 submit.addEventListener('click',validate);
 form.addEventListener('submit',async event=>{
  event.preventDefault();validate();if(!form.reportValidity())return;
- const data=Object.fromEntries(new FormData(form));Object.keys(data).forEach(k=>data[k]=data[k].trim());
+ const data=Object.fromEntries(new FormData(form));Object.keys(data).forEach(k=>{if(typeof data[k]==='string')data[k]=data[k].trim();});
  brief=`BRIEFING — SYRAX VISUAL\n\nNome: ${data.name}\nEmpresa ou marca: ${data.company||'Não informada'}\nContato: ${data.contact}\nTipo de projeto: ${data.type}\n\nA IDEIA\n${data.idea}\n`;
  result.hidden=false;download.hidden=false;
  if(whatsapp){const url=new URL(`https://wa.me/${whatsapp}`);url.searchParams.set('text',brief);window.open(url,'_blank','noopener,noreferrer');feedback.textContent='Continue no WhatsApp para revisar e enviar a mensagem. Você também pode baixar seu briefing.';return;}
- if(contactConfig.endpoint){submit.disabled=true;submit.setAttribute('aria-busy','true');feedback.textContent='Enviando seu briefing…';try{const response=await fetch(contactConfig.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!response.ok)throw new Error('Submission failed');feedback.textContent='Briefing enviado. Obrigado por compartilhar sua ideia com a SYRAX.';form.reset();}catch{feedback.textContent='Não foi possível enviar agora. Seus dados continuam no formulário. Tente novamente ou baixe seu briefing.';}finally{submit.disabled=false;submit.removeAttribute('aria-busy');}return;}
+ submit.disabled=true;submit.setAttribute('aria-busy','true');
+ if(contactConfig.endpoint){
+  feedback.textContent='Enviando seu briefing…';
+  try{const response=await fetch(contactConfig.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!response.ok)throw new Error('Submission failed');feedback.textContent='Briefing enviado. Obrigado por compartilhar sua ideia com a SYRAX.';form.reset();}
+  catch{feedback.textContent='Não foi possível enviar agora. Seus dados continuam no formulário. Tente novamente ou baixe seu briefing.';}
+  finally{submit.disabled=false;submit.removeAttribute('aria-busy');}
+  return;
+ }
+ if(netlifyForm){
+  feedback.textContent='Enviando seu briefing…';
+  try{
+   const payload=new URLSearchParams(new FormData(form));
+   const response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:payload.toString()});
+   if(!response.ok)throw new Error('Submission failed');
+   feedback.textContent='Briefing enviado. A SYRAX recebeu suas informações para contato.';
+   form.reset();
+  }catch{
+   feedback.textContent='Não foi possível enviar agora. Seus dados continuam no formulário. Tente novamente ou baixe seu briefing.';
+  }finally{
+   submit.disabled=false;submit.removeAttribute('aria-busy');
+  }
+  return;
+ }
+ submit.disabled=false;submit.removeAttribute('aria-busy');
  feedback.textContent='Seu briefing está pronto para baixar. Ele ainda não foi enviado à SYRAX.';
 });
 download.addEventListener('click',()=>{if(!brief)return;const url=URL.createObjectURL(new Blob([brief],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='briefing-syrax-visual.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
