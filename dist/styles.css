@@ -16,3 +16,21 @@
 .legal-page{min-height:100vh;background:#080a0c;color:var(--text)}.legal-header{max-width:960px;margin:0 auto;padding:28px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px}.legal-header .brand{text-decoration:none}.legal-back{font-size:12px;color:#b5c3c8;text-decoration:none}.legal-main{max-width:860px;margin:0 auto;padding:72px 24px 100px}.legal-main .eyebrow{margin-bottom:18px}.legal-main h1{font-size:clamp(44px,7vw,82px);line-height:1;letter-spacing:-.05em;margin:0 0 24px}.legal-main>p.lead{font-size:18px;color:#b5c3c8;line-height:1.7;max-width:720px;margin-bottom:56px}.legal-main section{padding:28px 0;border-top:1px solid var(--line)}.legal-main h2{font-size:22px;margin:0 0 14px}.legal-main p,.legal-main li{font-size:14px;line-height:1.8;color:#aeb9bd}.legal-main ul{padding-left:20px}.legal-main a{color:#aeeaf2}.legal-version{font-size:11px;color:#7e8a90;letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:900px){.trust-grid{grid-template-columns:1fr 1fr}.trust-card:nth-child(2){border-right:0}.trust-card:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 @media(max-width:650px){.trust-grid{grid-template-columns:1fr}.trust-card{border-right:0;border-bottom:1px solid var(--line);min-height:auto}.trust-card:last-child{border-bottom:0}.trust-card h3{margin-top:26px}.factory-product-overlay{margin-bottom:86px}.faq-list summary{font-size:16px}.footer-legal{width:100%;justify-content:flex-start}.legal-main{padding-top:48px}}
+
+/* Refino do preview do SYRAX Ads */
+.factory-visual{padding:34px 34px 82px;background:linear-gradient(145deg,#0b181d,#10272f);justify-content:flex-start}
+.factory-visual::before{inset:18px}
+.factory-visual::after{display:none}
+.factory-browser{position:relative;z-index:2;width:100%;aspect-ratio:16/10;border:1px solid #6edfeb2e;border-radius:8px;overflow:hidden;background:#06090b;box-shadow:0 24px 70px rgba(0,0,0,.38)}
+.factory-browser-bar{height:34px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#10171a;border-bottom:1px solid #ffffff12}
+.factory-browser-bar span{width:7px;height:7px;border-radius:50%;background:#ffffff35}
+.factory-browser-bar strong{margin-left:7px;font-size:9px;letter-spacing:.12em;font-weight:600;color:#8fa7ad;text-transform:uppercase}
+.factory-product-shot{position:static;display:block;width:100%;height:calc(100% - 34px);object-fit:cover;object-position:top center;filter:none;transform:none}
+.factory-feature-row{position:relative;z-index:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.factory-feature-row span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#b8dce2;border:1px solid #70dbe936;background:#0a171b;padding:7px 9px;border-radius:999px}
+.factory-bottom{bottom:28px;left:34px;right:34px}
+@media(max-width:650px){
+ .factory-visual{padding:20px 20px 78px;min-height:390px}
+ .factory-browser{aspect-ratio:4/3}
+ .factory-bottom{left:20px;right:20px;bottom:24px}
+}
