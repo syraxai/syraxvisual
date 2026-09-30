@@ -52,7 +52,7 @@ Sem configuração, o botão valida os campos e oferece um arquivo TXT local. A 
 
 ## Links oficiais
 
-- Ad Factory: https://syrax-ad-factory.higgsfield.app/
+- SYRAX Ads: https://syrax-ads.netlify.app/
 - Higgsfield (afiliado): https://higgsfield.ai?fpr=carlos-99134b
 
 Ambos abrem em nova aba com `noopener noreferrer`; o link afiliado é identificado e possui também `sponsored`.
