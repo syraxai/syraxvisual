@@ -20,7 +20,7 @@ export const process = [
 ];
 // Preencha somente com os contatos comerciais oficiais fornecidos pela SYRAX.
 export const contactConfig = {
-  instagramUrl: null,
+  instagramUrl: 'https://www.instagram.com/syrax.visual/',
   whatsappNumber: null, // Ex.: país + DDD + número, apenas dígitos.
   endpoint: null // Opcional: endpoint que aceite POST JSON e retorne 2xx após receber o briefing.
 };
