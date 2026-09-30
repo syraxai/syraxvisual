@@ -44,7 +44,8 @@ document.querySelector('#close-dialog').addEventListener('click',()=>dialog.clos
 dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
 dialog.addEventListener('close',()=>{player.pause();player.removeAttribute('src');player.load();document.body.classList.remove('modal-open');if(resumeHero&&!reducedMotion.matches)hero.play().catch(syncMotion);});
 const comparison=document.querySelector('#comparison');
-document.querySelector('#compare-range').addEventListener('input',event=>{const value=Number(event.target.value);comparison.style.setProperty('--split',`${value}%`);event.target.setAttribute('aria-valuetext',`${value}% referência, ${100-value}% resultado`);});
+const compareRange=document.querySelector('#compare-range');
+if(comparison&&compareRange)compareRange.addEventListener('input',event=>{const value=Number(event.target.value);comparison.style.setProperty('--split',`${value}%`);event.target.setAttribute('aria-valuetext',`${value}% referência, ${100-value}% resultado`);});
 
 const revealObserver = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.remove('reveal-pending');revealObserver.unobserve(entry.target);}}),{threshold:.08});
 if(!reducedMotion.matches)document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('reveal-pending');revealObserver.observe(el);});
